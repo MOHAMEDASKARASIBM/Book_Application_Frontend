@@ -50,6 +50,8 @@ jobs:
       - name: Commit the Chart 
         run: |
           cd Book_Application_Helm_Chart
+          git config --global user.email "mohamedaskarasibm@gmail.com"
+          git config --global user.name "MOHAMEDASKARASIBM"
           git add .
           git commit -m "update the latest image"
           git push
