@@ -4,7 +4,7 @@ on: push
   
 
 jobs:
-  
+ 
   build:
     
     name: Build Image
@@ -35,3 +35,19 @@ jobs:
       run: |
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+  update:
+    name: Update Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cloning the Repo
+        run: git clone https://${{ secrets.ACTIONS_TOKEN }}@github.com/MOHAMEDASKARASIBM/Book_Application_Helm_Chart
+      - name: Update Image Tag
+        run: | 
+          cd Book_Application_Helm_Chart/mychart
+          $new_tag=v${{github.run_number}}
+          sed -i "s/\(frontend_tag:\s*\).*/\1$new_tag/" values.yaml
+      - name: Commit the Chart 
+        run: |
+          git add .
+          git commit -m "update the latest image"
+          git push
