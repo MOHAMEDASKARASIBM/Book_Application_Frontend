@@ -38,13 +38,14 @@ jobs:
   update:
     name: Update Image
     runs-on: ubuntu-latest
+    needs: build
     steps:
       - name: Cloning the Repo
         run: git clone https://${{ secrets.ACTIONS_TOKEN }}@github.com/MOHAMEDASKARASIBM/Book_Application_Helm_Chart
       - name: Update Image Tag
         run: | 
           cd Book_Application_Helm_Chart/mychart
-          $new_tag=v${{github.run_number}}
+          $new_tag="v${{github.run_number}}"
           sed -i "s/\(frontend_tag:\s*\).*/\1$new_tag/" values.yaml
       - name: Commit the Chart 
         run: |
