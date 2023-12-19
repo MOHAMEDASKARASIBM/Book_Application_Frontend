@@ -47,9 +47,9 @@ jobs:
           cd Book_Application_Helm_Chart/mychart
           new_tag="v${{github.run_number}}"
           sed -i "s/\(frontend_tag:\s*\).*/\1$new_tag/" values.yaml
-          cd ..
       - name: Commit the Chart 
         run: |
+          cd Book_Application_Helm_Chart
           git add .
           git commit -m "update the latest image"
           git push
