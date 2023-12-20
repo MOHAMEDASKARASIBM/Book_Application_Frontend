@@ -36,13 +36,13 @@ const Home = () => {
         >
           Table
         </button>
-        <button
+        {/* <button
           className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'
           onClick={() => setShowType('card')}
         >
           Card
-        </button>
-        
+        </button> */}
+        {/* <button className='bg-sky-300 hover:bg-sky-600 px-4 py-1 rounded-lg'>Update</button> */}
       </div>
       <div className='flex justify-between items-center'>
         <h1 className='text-3xl my-8'>Books List</h1>
